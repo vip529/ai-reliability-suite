@@ -1,0 +1,46 @@
+---
+description: Vercel AI SDK best practices for LLM integration
+globs: ['**/api/**', '**/app/api/**', '**/*ai*.ts', '**/*ai*.tsx']
+---
+
+# Vercel AI SDK Best Practices
+
+## AI Route Handlers
+- **Streaming responses**: Use `streamText` or `streamObject` for streaming responses
+- **Edge runtime**: Deploy AI routes to Edge runtime for low latency
+- **Error handling**: Always wrap AI SDK calls in try-catch blocks
+- **Rate limiting**: Implement rate limiting for AI endpoints
+
+## Streaming
+- **StreamText**: Use `streamText` for text completions
+- **StreamObject**: Use `streamObject` for structured outputs with Zod schemas
+- **StreamUI**: Use `streamUI` for interactive UI components
+- **Streaming UI**: Handle loading states properly during streaming
+
+## Structured Outputs
+- **Zod schemas**: Always define Zod schemas for structured outputs
+- **Schema validation**: Validate outputs against schemas before returning
+- **Type safety**: Generate TypeScript types from Zod schemas using `z.infer`
+
+## Tool Calling
+- **Tool definitions**: Define tools with clear descriptions and parameter schemas
+- **Tool execution**: Handle tool execution errors gracefully
+- **Tool results**: Return structured results from tools
+- **Tool validation**: Validate tool inputs with Zod before execution
+
+## Model Configuration
+- **Model selection**: Choose appropriate models for tasks (GPT-4 for complex, GPT-3.5 for simple)
+- **Temperature**: Set appropriate temperature based on use case (lower for deterministic, higher for creative)
+- **Max tokens**: Set reasonable max_tokens limits
+- **System prompts**: Use system prompts for consistent behavior
+
+## Error Handling
+- **API errors**: Handle OpenAI/API errors with proper error messages
+- **Retry logic**: Implement exponential backoff for transient failures
+- **Fallbacks**: Provide fallback responses when AI calls fail
+- **Logging**: Log AI requests and responses for debugging (without sensitive data)
+
+## Performance
+- **Caching**: Cache AI responses when appropriate (e.g., evaluation results)
+- **Batching**: Batch multiple AI calls when possible
+- **Edge deployment**: Deploy to Edge runtime for global low latency

@@ -1,0 +1,49 @@
+---
+description: Supabase best practices for database and auth
+globs: ['**/*supabase*.ts', '**/db/**', '**/database/**']
+---
+
+# Supabase Best Practices
+
+## Client Initialization
+- **Singleton pattern**: Create a single Supabase client instance and reuse it
+- **Environment variables**: Use environment variables for Supabase URL and keys
+- **Client types**: Generate and use TypeScript types from database schema
+- **Server vs Client**: Use separate clients for server-side and client-side code
+
+## Database Queries
+- **Row Level Security (RLS)**: Always enable and configure RLS policies
+- **Query optimization**: Use select() to fetch only needed columns
+- **Pagination**: Implement pagination for large datasets using `range()`
+- **Filtering**: Use Supabase query builder methods (eq, neq, gt, etc.) instead of raw SQL when possible
+
+## Type Safety
+- **Generated types**: Use `supabase gen types` to generate TypeScript types
+- **Type imports**: Import types from generated types file
+- **Database types**: Use database types for table and column references
+
+## Error Handling
+- **Error checking**: Always check for errors in Supabase responses
+- **Error types**: Handle different error types appropriately
+- **User-friendly messages**: Transform technical errors into user-friendly messages
+
+## Authentication
+- **Session management**: Use Supabase Auth helpers for session management
+- **Protected routes**: Implement middleware for protected routes
+- **User context**: Use Supabase Auth context providers in React apps
+- **Token refresh**: Handle token refresh automatically
+
+## Real-time
+- **Subscriptions**: Use Supabase real-time subscriptions for live data
+- **Cleanup**: Always unsubscribe from real-time subscriptions on unmount
+- **Channel management**: Manage channels efficiently to avoid memory leaks
+
+## Migrations
+- **Migration files**: Use Supabase migration system for schema changes
+- **Version control**: Commit migration files to version control
+- **Rollback**: Always test rollback procedures for migrations
+
+## Security
+- **API keys**: Never expose service role key in client-side code
+- **RLS policies**: Write comprehensive RLS policies for all tables
+- **Input validation**: Validate all inputs before database operations

@@ -1,0 +1,50 @@
+---
+description: Prisma ORM best practices
+globs: ['**/prisma/**', '**/*prisma*.ts']
+---
+
+# Prisma Best Practices
+
+## Schema Definition
+- **Naming conventions**: Use PascalCase for models, camelCase for fields
+- **Relations**: Define relations explicitly with proper foreign keys
+- **Indexes**: Add indexes for frequently queried fields
+- **Defaults**: Use appropriate default values and constraints
+
+## Client Usage
+- **Singleton pattern**: Use Prisma Client singleton pattern
+- **Connection pooling**: Configure connection pooling for production
+- **Client generation**: Regenerate Prisma Client after schema changes
+
+## Queries
+- **Select fields**: Use `select` to fetch only needed fields
+- **Include relations**: Use `include` or `select` for relations, avoid N+1 queries
+- **Transactions**: Use transactions for multi-step operations
+- **Raw queries**: Avoid raw SQL unless necessary; prefer Prisma query builder
+
+## Type Safety
+- **Generated types**: Use generated Prisma types (e.g., `User`, `UserCreateInput`)
+- **Type inference**: Leverage Prisma's type inference for queries
+- **Custom types**: Extend Prisma types when needed with type utilities
+
+## Migrations
+- **Migration workflow**: Use `prisma migrate dev` for development
+- **Migration files**: Review migration files before applying
+- **Seed data**: Use `prisma db seed` for seeding development data
+- **Production**: Use `prisma migrate deploy` for production deployments
+
+## Performance
+- **Query optimization**: Use `findMany` with proper where clauses instead of fetching all
+- **Pagination**: Implement cursor-based or offset-based pagination
+- **Batch operations**: Use `createMany`, `updateMany`, `deleteMany` for bulk operations
+- **Connection management**: Close Prisma Client properly in serverless environments
+
+## Error Handling
+- **Prisma errors**: Handle Prisma-specific errors (UniqueConstraint, ForeignKeyConstraint, etc.)
+- **Error types**: Use Prisma error types for proper error handling
+- **Validation**: Validate inputs before Prisma operations
+
+## Integration with Supabase
+- **Connection string**: Use Supabase connection string in DATABASE_URL
+- **Schema sync**: Keep Prisma schema in sync with Supabase database
+- **RLS compatibility**: Design schema with RLS policies in mind

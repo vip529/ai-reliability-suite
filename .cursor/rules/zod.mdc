@@ -1,0 +1,44 @@
+---
+description: Zod schema validation best practices
+globs: ['**/*schema*.ts', '**/*validation*.ts', '**/*zod*.ts']
+---
+
+# Zod Best Practices
+
+## Schema Definition
+- **Naming**: Use descriptive names for schemas (e.g., `UserSchema`, `EvaluationTaskSchema`)
+- **Reusability**: Create reusable schema components and compose them
+- **Validation rules**: Add appropriate validation rules (min, max, regex, etc.)
+- **Optional fields**: Use `.optional()` or `.nullable()` explicitly
+
+## Type Safety
+- **Type inference**: Use `z.infer<typeof Schema>` to generate TypeScript types
+- **Type exports**: Export both schema and inferred types
+- **Type narrowing**: Use Zod for runtime type narrowing and validation
+
+## Validation
+- **Parse vs SafeParse**: Use `safeParse` for error handling, `parse` when errors should throw
+- **Error messages**: Provide custom error messages for better UX
+- **Error handling**: Handle Zod errors gracefully with user-friendly messages
+
+## Schema Composition
+- **Extend schemas**: Use `.extend()` or `.merge()` to compose schemas
+- **Pick/Omit**: Use `.pick()` and `.omit()` to create derived schemas
+- **Refine**: Use `.refine()` for custom validation logic
+
+## Integration Patterns
+- **API validation**: Validate request bodies and query parameters with Zod
+- **Form validation**: Use Zod with form libraries (React Hook Form, etc.)
+- **Database validation**: Validate data before database operations
+- **AI outputs**: Validate AI model outputs with Zod schemas
+
+## Performance
+- **Schema caching**: Reuse schema instances instead of recreating
+- **Lazy validation**: Validate only when necessary, not on every render
+- **Early validation**: Validate inputs as early as possible in the request pipeline
+
+## Best Practices
+- **Co-location**: Keep schemas close to where they're used
+- **Documentation**: Add JSDoc comments for complex schemas
+- **Testing**: Write tests for schema validation edge cases
+- **Versioning**: Consider schema versioning for API compatibility

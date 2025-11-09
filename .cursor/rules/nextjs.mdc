@@ -1,0 +1,46 @@
+---
+description: Next.js App Router best practices
+globs: ['**/app/**', '**/pages/**', '**/next.config.*']
+---
+
+# Next.js App Router Best Practices
+
+## App Router Structure
+- **Route organization**: Use `app/` directory with file-based routing
+- **Route groups**: Use `(groupName)` for organizing routes without affecting URL structure
+- **Layouts**: Use `layout.tsx` for shared UI across routes
+- **Loading states**: Use `loading.tsx` for loading UI
+- **Error boundaries**: Use `error.tsx` for error handling
+- **Not found**: Use `not-found.tsx` for 404 pages
+
+## Server vs Client Components
+- **Default to Server**: Use Server Components by default for better performance
+- **'use client' directive**: Only add `'use client'` when necessary (hooks, browser APIs, event handlers)
+- **Component boundaries**: Keep Client Components as leaf nodes when possible
+
+## Data Fetching
+- **Server Components**: Fetch data directly in Server Components using async/await
+- **No useEffect for data**: Don't use `useEffect` for data fetching in Server Components
+- **Caching**: Use Next.js caching strategies (`cache`, `revalidate`, `unstable_cache`)
+- **Streaming**: Use `Suspense` boundaries for streaming data
+
+## API Routes
+- **Route handlers**: Use `route.ts` (or `route.js`) in `app/api/` directory
+- **HTTP methods**: Export named functions (`GET`, `POST`, etc.) for route handlers
+- **Edge runtime**: Use `export const runtime = 'edge'` for Edge Functions when appropriate
+- **Response types**: Always return proper Response objects
+
+## Metadata & SEO
+- **Metadata API**: Use `metadata` export or `generateMetadata` function
+- **Dynamic metadata**: Use `generateMetadata` for dynamic routes
+- **Open Graph**: Include Open Graph and Twitter card metadata
+
+## Performance
+- **Image optimization**: Always use `next/image` for images
+- **Font optimization**: Use `next/font` for custom fonts
+- **Dynamic imports**: Use dynamic imports for code splitting
+- **Edge deployment**: Optimize for Edge runtime when possible
+
+## Environment Variables
+- **Naming**: Use `NEXT_PUBLIC_` prefix for client-side variables
+- **Type safety**: Define environment variable types in a config file

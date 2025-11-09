@@ -1,0 +1,36 @@
+---
+description: Universal coding guidelines applicable to all project files
+alwaysApply: true
+---
+
+# Universal Guidelines
+
+## Code Quality Standards
+- **Confidence Threshold**: Add code only when 95% confident in its correctness and alignment with project requirements
+- **Comments**: Avoid adding comments unless they are essential for understanding complex business logic, algorithms, or non-obvious decisions
+- **Code Philosophy**: Write enterprise-grade, simple, maintainable, readable, modular, and scalable code
+- **DRY Principle**: Don't Repeat Yourself - extract common logic into reusable utilities or components
+- **Single Responsibility**: Each function, component, or module should have a single, well-defined purpose
+
+## File Organization
+- **React Components**: 
+  - Filename: `camelCase.tsx` (e.g., `userProfile.tsx`, `dataTable.tsx`)
+  - Folder name: `kebab-case` (e.g., `user-profile/`, `data-table/`)
+- **Utilities**: Use `kebab-case` for utility files (e.g., `format-date.ts`, `validate-schema.ts`)
+- **Constants**: Use `UPPER_SNAKE_CASE` for exported constants
+
+## Error Handling
+- Always handle errors explicitly - never silently fail
+- Use proper error types and meaningful error messages
+- Log errors appropriately for debugging without exposing sensitive information
+
+## Performance
+- Optimize for Edge-first execution (low latency, minimal dependencies)
+- Avoid unnecessary re-renders and computations
+- Use appropriate caching strategies
+
+## Security
+- Never commit API keys, secrets, or sensitive data
+- Validate all user inputs and external data
+- Use environment variables for configuration
+- Follow principle of least privilege

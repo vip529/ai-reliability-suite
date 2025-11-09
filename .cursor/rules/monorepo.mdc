@@ -1,0 +1,46 @@
+---
+description: Monorepo and pnpm workspace best practices
+globs: ['**/package.json', '**/pnpm-workspace.yaml', '**/turbo.json']
+---
+
+# Monorepo Best Practices
+
+## Workspace Structure
+- **pnpm workspaces**: Use pnpm workspaces for package management
+- **Package organization**: Organize packages in `packages/` and apps in `apps/`
+- **Shared code**: Extract shared code into packages (e.g., `packages/core-eval`, `packages/ui`)
+- **Dependencies**: Use workspace protocol (`workspace:*`) for internal dependencies
+
+## Package Management
+- **pnpm install**: Use `pnpm install` at root to install all dependencies
+- **Filter commands**: Use `pnpm --filter <package>` to run commands in specific packages
+- **Dependency hoisting**: Leverage pnpm's dependency hoisting for shared dependencies
+- **Lock file**: Commit `pnpm-lock.yaml` to version control
+
+## Build System
+- **Turbo (optional)**: Consider using Turborepo for build orchestration
+- **Build order**: Ensure packages build before apps that depend on them
+- **Caching**: Configure build caching for faster CI/CD
+- **Parallel execution**: Run independent builds in parallel
+
+## Code Sharing
+- **Shared packages**: Create packages for shared utilities, types, and components
+- **Barrel exports**: Use index files for clean package exports
+- **Type exports**: Export TypeScript types from packages
+- **Versioning**: Consider semantic versioning for packages
+
+## Development Workflow
+- **Local development**: Use `pnpm dev` to run all apps in development mode
+- **Hot reload**: Ensure changes in packages trigger rebuilds in dependent apps
+- **Testing**: Run tests across all packages and apps
+- **Linting**: Apply consistent linting rules across all packages
+
+## Environment Variables
+- **Root .env**: Place shared environment variables in root `.env`
+- **App-specific .env**: Use app-specific `.env.local` for app-specific variables
+- **.env.example**: Maintain `.env.example` files for documentation
+
+## Git & Version Control
+- **Root gitignore**: Maintain root-level `.gitignore` for monorepo-wide ignores
+- **Package gitignore**: Add package-specific ignores when needed
+- **Commit messages**: Use conventional commits for better changelog generation

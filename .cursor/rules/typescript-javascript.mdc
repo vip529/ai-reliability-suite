@@ -1,0 +1,42 @@
+---
+description: TypeScript and JavaScript best practices
+globs: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx']
+---
+
+# TypeScript & JavaScript Best Practices
+
+## Type Safety
+- **Always write types**: Every function, variable, and parameter should have explicit types
+- **Avoid `any`**: Strive for zero `any` types. Use `unknown` when type is truly unknown, then narrow it
+- **Use strict mode**: Enable `strict: true` in tsconfig.json
+- **Type inference**: Leverage TypeScript's inference where types are obvious, but be explicit for public APIs
+
+## Function Declarations
+- **Arrow functions**: Prefer arrow functions for anonymous functions and callbacks
+- **Function declarations**: Use function declarations for top-level functions that need hoisting
+- **Async/await**: Prefer async/await over Promise chains for better readability
+
+## Variable Declarations
+- **const by default**: Use `const` unless reassignment is necessary, then use `let`
+- **Never use `var`**: Always use `const` or `let`
+- **Declare at top**: Define all local variables at the top of each function when possible
+
+## Comparisons
+- **Strict equality**: Always use `===` and `!==` instead of `==` and `!=`
+- **Nullish coalescing**: Use `??` for null/undefined checks, `||` for falsy values
+- **Optional chaining**: Use `?.` to safely access nested properties
+
+## Code Organization
+- **Imports**: Group imports: external packages → internal packages → relative imports
+- **Exports**: Use named exports by default, default exports only for main component/page
+- **Barrel exports**: Use index files for clean public APIs
+
+## Modern JavaScript Features
+- **Destructuring**: Use destructuring for objects and arrays
+- **Template literals**: Use template literals instead of string concatenation
+- **Spread operator**: Use spread for arrays and objects when appropriate
+
+## Type Definitions
+- **Interfaces vs Types**: Use `interface` for object shapes, `type` for unions, intersections, and computed types
+- **Generic constraints**: Use generics with constraints for reusable, type-safe utilities
+- **Utility types**: Leverage TypeScript utility types (Pick, Omit, Partial, etc.)

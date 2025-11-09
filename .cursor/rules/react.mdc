@@ -1,0 +1,46 @@
+---
+description: React best practices and conventions
+globs: ['**/*.tsx', '**/*.jsx']
+---
+
+# React Best Practices
+
+## Component Structure
+- **Functional components**: Always use functional components with hooks
+- **Component size**: Keep components focused and under 200 lines; split into smaller components when needed
+- **File naming**: Use `camelCase.tsx` for component files (e.g., `userProfile.tsx`, `dataTable.tsx`)
+- **Folder naming**: Use `kebab-case` for component folders (e.g., `user-profile/`, `data-table/`)
+
+## Component Organization
+- **One component per file**: Each file should export one main component
+- **Co-location**: Keep related components, hooks, and utilities in the same folder
+- **Barrel exports**: Use `index.ts` for clean imports from component folders
+
+## Hooks
+- **Custom hooks**: Extract reusable logic into custom hooks (prefix with `use`)
+- **Hook rules**: Follow Rules of Hooks - only call hooks at the top level
+- **Dependencies**: Always include all dependencies in hook dependency arrays
+
+## Props & State
+- **PropTypes/TypeScript**: Use TypeScript interfaces for prop types
+- **Default props**: Use default parameters in function signatures
+- **State management**: Use local state for component-specific data, context for shared state, external state for global app state
+
+## Performance
+- **Keys in lists**: Never use array indices as keys; use stable, unique identifiers
+- **Memoization**: Use `React.memo`, `useMemo`, and `useCallback` judiciously - only when profiling shows benefits
+- **Code splitting**: Use dynamic imports for route-based code splitting
+
+## Event Handlers
+- **Naming**: Use `handle` prefix for event handlers (e.g., `handleSubmit`, `handleClick`)
+- **Arrow functions**: Use arrow functions or `useCallback` for event handlers passed as props
+
+## Accessibility
+- **Semantic HTML**: Use semantic HTML elements
+- **ARIA attributes**: Use ARIA attributes when semantic HTML isn't sufficient
+- **Keyboard navigation**: Ensure all interactive elements are keyboard accessible
+
+## Next.js App Router Specific
+- **Server Components**: Use Server Components by default, Client Components only when needed
+- **'use client' directive**: Add `'use client'` only when using hooks, browser APIs, or event handlers
+- **Async Server Components**: Use async/await in Server Components for data fetching

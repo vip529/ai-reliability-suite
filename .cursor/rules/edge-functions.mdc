@@ -1,0 +1,47 @@
+---
+description: Edge Functions and serverless best practices
+globs: ['**/app/api/**', '**/api/**', '**/edge/**']
+---
+
+# Edge Functions Best Practices
+
+## Edge Runtime
+- **Runtime declaration**: Explicitly set `export const runtime = 'edge'` for Edge Functions
+- **Compatibility**: Ensure all dependencies are Edge-compatible (no Node.js-only APIs)
+- **Global APIs**: Use Web APIs instead of Node.js APIs (e.g., `fetch` instead of `node-fetch`)
+
+## Performance
+- **Cold starts**: Minimize cold start time by reducing bundle size
+- **Dependencies**: Minimize dependencies to reduce bundle size
+- **Code splitting**: Keep Edge Functions focused and small
+- **Caching**: Use appropriate caching headers and strategies
+
+## API Design
+- **Stateless**: Keep Edge Functions stateless - no in-memory state
+- **Request/Response**: Use standard Request/Response objects
+- **Error handling**: Return proper HTTP status codes and error responses
+- **CORS**: Configure CORS headers appropriately
+
+## Data Fetching
+- **External APIs**: Use `fetch` for external API calls
+- **Database**: Use connection pooling for database connections
+- **Timeouts**: Set appropriate timeouts for external calls
+- **Retries**: Implement retry logic with exponential backoff
+
+## Security
+- **Authentication**: Verify authentication tokens early in the function
+- **Input validation**: Validate all inputs with Zod schemas
+- **Rate limiting**: Implement rate limiting for public endpoints
+- **Secrets**: Use environment variables for secrets, never hardcode
+
+## Monitoring
+- **Logging**: Use structured logging for debugging
+- **Error tracking**: Log errors with context for debugging
+- **Metrics**: Track function execution time and errors
+- **Alerts**: Set up alerts for function failures
+
+## Vercel Deployment
+- **Configuration**: Use `vercel.json` for Edge Function configuration
+- **Regions**: Configure appropriate regions for Edge Functions
+- **Environment variables**: Set environment variables in Vercel dashboard
+- **Deployment**: Test Edge Functions in preview deployments before production
